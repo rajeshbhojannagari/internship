@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+   <style>
+  body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .calculator{
+    background: #1f1f1f;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    width: 280px;
+  }
+  #display{
+    width: 100%;
+    height: 60px;
+    font-size: 2rem;
+    text-align: right;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    border: none;
+    background: linear-gradient(145deg, #2b2b2b, #1a1a1a);
+    color: #fff;
+    box-shadow: inset 2px 2px 5px rgba(255,255,255,0.1),
+                inset -2px -2px 5px rgba(0,0,0,0.7);
+  }
+  .buttons{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+  button{
+    padding: 20px;
+    font-size: 1.4rem;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: linear-gradient(145deg, #2b2b2b, #1a1a1a);
+    color: #fff;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.4),
+                -5px -5px 15px rgba(255,255,255,0.05);
+  }
+  button.operator{
+    background: linear-gradient(145deg, #ff9500, #ff7f00);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.4),
+                -5px -5px 15px rgba(255,255,255,0.1);
+  }
+  button:hover{
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.6),
+                -5px -5px 15px rgba(255,255,255,0.1);
+  }
+  button.operator:hover{
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.6),
+                -5px -5px 20px rgba(255,255,255,0.2);
+  }
+  button:active{
+    transform: translateY(1px);
+    box-shadow: inset 3px 3px 7px rgba(0,0,0,0.6),
+                inset -3px -3px 7px rgba(255,255,255,0.1);
+  }
+</style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendValue('/')">÷</button>
+            <button onclick="appendValue('*')">x</button>
+            <button onclick="appendValue('-')">-</button>
+
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button onclick="appendValue('+')">+</button>
+
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button rowspan="2" onclick="calculate()">=</button>
+
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+
+
+            <button onclick="appendValue('0')">0</button>
+            <button onclick="appendValue('.')">.</button>
+            <button onclick="deleteLast()">⌫</button>
+        </div>
+    </div>
+    <script>
+        const display=document.getElementById("display");
+        function appendValue(val){
+            display.value += val;
+        }
+        function clearDisplay(){
+            display.value="";
+        }
+        function calculate(){
+            try{
+                display.value=eval(display.value);
+            }catch{
+                display.value="Error";
+            }
+        }
+        function deleteLast(){
+    display.value = display.value.slice(0, -1);
+        }
+    </script>
+</body>
+</html>
